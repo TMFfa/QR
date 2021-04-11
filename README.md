@@ -5,4 +5,4 @@
 - 该软件会自动置顶
 - 该软件是练习制作的，体积相对较大，但个人认为很适合电脑识别二维码
 
-## [点次下载](https://github.com/TMFfa/QR/releases/download/1.0/QR.exe)
+## [点此下载](https://github.com/TMFfa/QR/releases/download/1.0/QR.exe)
