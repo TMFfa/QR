@@ -22,7 +22,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.setFixedSize(396, 233)  # 固定窗口大小
+        MainWindow.setFixedSize(396, 233)  # 固定窗口大小，本来是resize，修改为这个禁止人为拉动软件size
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
@@ -55,20 +55,20 @@ class Ui_MainWindow(object):
 
     # 以下为自定义函数，用来实现自定义功能，将与各个组件的相应事件绑定
     def grab(self):
-        img = ImageGrab.grab()
-        results = pyzbar.decode(image=img, symbols=[pyzbar.ZBarSymbol.QRCODE])
-        self.listWidget.clear()
+        img = ImageGrab.grab()  # 截屏
+        results = pyzbar.decode(image=img, symbols=[pyzbar.ZBarSymbol.QRCODE])  # 识别二维码
+        self.listWidget.clear()  # 先清空以前的信息
         for i, result in enumerate(results):
             url = result.data.decode('utf-8')
             # print(url)
-            self.listWidget.insertItem(i, url)
+            self.listWidget.insertItem(i, url)  # 这里的url是str，不是QListWidgetItem，主打方便
 
     def open_url(self):
-        for i in range(self.listWidget.count()):
-            webbrowser.open(url=self.listWidget.item(i).text())
+        for i in range(self.listWidget.count()):  # count计数有多少个item，便于按row获取item
+            webbrowser.open(url=self.listWidget.item(i).text())  # item(row)获取元素，text()返回str
 
     def double_open(self):
-        url = self.listWidget.selectedItems()[0].text()
+        url = self.listWidget.selectedItems()[0].text()  # 选中的item可以是多个，但是double的时候只会有一个所以[0]
         webbrowser.open(url=url)
 
 
