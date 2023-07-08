@@ -23,6 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setFixedSize(396, 233)  # 固定窗口大小，本来是resize，修改为这个禁止人为拉动软件size
+        MainWindow.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)  # 窗口始终置顶
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
